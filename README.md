@@ -6,14 +6,13 @@ more information, please refer to this paper:
 
 Svilen Kanev, Sam (Likun) Xi, Gu-Yeon Wei, and David Brooks.  
 Mallacc: Accelerator Memory Allocation.  
-Architectural Support for Operating Systems and Programming Languages, April 2017.  
+Architectural Support for Operating Systems and Programming Languages, April 2017.
 [PDF](http://www.samxi.org/papers/kanev_asplos2017.pdf)
 
 This repository contains all the information necessary to reproduce our
 experiments and results.
 
-Dependencies
-------------
+# Dependencies #
 
 1. [gperftools](https://github.com/s-kanev/gperftools/tree/malloc_hw) - our
    customized version of tcmalloc that uses our newly proposed instructions.
@@ -31,24 +30,20 @@ Dependencies
    simulator. This branch includes support for malloc instructions and
    specialized hardware.
 
-Installation
-------------
+# Installation #
 
 
-# General #
+### General ###
 
-# tcmalloc #
+### tcmalloc ###
 
-# Xapian #
+### Xapian ###
 
-# Masstree #
+### Masstree ###
 
-# XIOSim #
+### XIOSim ###
 
 
-Running native experiments
---------------------------
+# Running native experiments #
 
-Running simulations
--------------------
-
+# Running simulations #
