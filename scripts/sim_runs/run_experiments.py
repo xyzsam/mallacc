@@ -9,10 +9,9 @@ import run_profiles
 
 # Sequence of optimizations to run.
 opts = {
-#     "ubench" : ["baseline", "real-sampling", "real-size-class", "real-list", "realistic", "limit"]
-#     "spec" : ["baseline", "all"],
-#     "xapian": ["baseline", "all"],
-    "masstree": ["baseline"]
+    "ubench" : ["baseline", "real-sampling", "real-size-class", "real-list", "realistic", "limit"]
+    "spec" : ["baseline", "all"],
+    "xapian": ["baseline", "all"],
 }
 
 user = getpass.getuser()

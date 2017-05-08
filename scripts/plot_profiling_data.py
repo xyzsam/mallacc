@@ -47,9 +47,7 @@ FORMAT = "pdf"
 
 def matplotlib_init():
     mpl.rcParams.update({"font.size": FONT_SIZE,
-                         "mathtext.default": "regular",
-                         "pdf.fonttype": 42,
-                         "ps.fonttype": 42})
+                         "mathtext.default": "regular"})
     mpl.rc("xtick", labelsize=FONT_SIZE)
     mpl.rc("ytick", labelsize=FONT_SIZE)
     mpl.rc("legend", **{"fontsize": FONT_SIZE-2})
@@ -302,8 +300,8 @@ def plot_ideal_speedup(db, bmarks_, opts, baseline="baseline", suff="_large", ma
             speedup *= 100  # pct
             std *= 100  # pct
 
-            # if bmark == "xapian.query_wiki_pages":
-            #     std = 0.0 # XXX: FIX HOW I MERGED XAPIAN IN THE DB
+            if bmark == "xapian.query_wiki_pages":
+                std = 0.0 # XXX: FIX HOW I MERGED XAPIAN IN THE DB
 
             bmark_data.append([speedup, std])
 
@@ -899,47 +897,37 @@ def plot_overall_speedup(db, opt, baseline="baseline"):
 
     bmarks, _ = get_large_benchmarks(db)
     with open("../data/speedup.tab", "w") as f:
-        all_baseline = []
-        all_opt = []
-        for run in runs:
-            baseline_cycles = 0
-            opt_cycles = 0
-            for bmk in bmarks:
+        for bmk in bmarks:
+            all_baseline = []
+            all_opt = []
+            for run in runs:
                 try:
                     baseline_sim_cycles = float(get_total_sim_cycles(cursor, bmk, baseline, run, None))
                     opt_sim_cycles = float(get_total_sim_cycles(cursor, bmk, opt, run, None))
                     speedup = 100 * (1.0 - opt_sim_cycles / baseline_sim_cycles)
                     #print "%s %.2f %%" % (bmk, speedup)
-                    #all_baseline.append(baseline_sim_cycles)
-                    #all_opt.append(opt_sim_cycles)
-                    baseline_cycles += baseline_sim_cycles
-                    opt_cycles += opt_sim_cycles
+                    all_baseline.append(baseline_sim_cycles)
+                    all_opt.append(opt_sim_cycles)
                 except TypeError:
                     continue
 
-            all_baseline.append(baseline_cycles)
-            all_opt.append(opt_cycles)
+            all_baseline = np.array(all_baseline)
+            all_opt = np.array(all_opt)
+            tt = st.ttest_ind(all_baseline, all_opt, equal_var=True)
 
-        print all_baseline
-        print all_opt
-        bmk = "xapian.query_wiki_pages"
-        all_baseline = np.array(all_baseline)
-        all_opt = np.array(all_opt)
-        tt = st.ttest_ind(all_baseline, all_opt, equal_var=True)
+            total_baseline = np.sum(all_baseline)
+            total_opt = np.sum(all_opt)
+            total_speedup = total_opt / total_baseline
+            total_std = (np.nanstd(all_baseline)/total_baseline + np.nanstd(all_opt)/total_opt) * total_speedup
 
-        total_baseline = np.sum(all_baseline)
-        total_opt = np.sum(all_opt)
-        total_speedup = total_opt / total_baseline
-        total_std = (np.nanstd(all_baseline)/total_baseline + np.nanstd(all_opt)/total_opt) * total_speedup
+            total_speedup = 100 * (1.0 - total_speedup)
+            total_std *= 100
+            print "TOTAL: %s %.2f %% %.2f %%" % (bmk, total_speedup, total_std)
+            print tt
+            p_val = tt[1] / 2 # /2 for single-sided t-test
 
-        total_speedup = 100 * (1.0 - total_speedup)
-        total_std *= 100
-        print "TOTAL: %s %.2f %% %.2f %%" % (bmk, total_speedup, total_std)
-        print tt
-        p_val = tt[1] / 2 # /2 for single-sided t-test
-
-        if p_val < 0.05:
-            f.write('\\bmk{%s} & %.2f\\%% & %.2f\\%% & %.3f\\\\\n' % (bmk, total_speedup, total_std, p_val))
+            if p_val < 0.05:
+                f.write('\\bmk{%s} & %.2f\\%% & %.2f\\%% & %.3f\\\\\n' % (bmk, total_speedup, total_std, p_val))
 
 
 def plot_ideal_vs_realistic_opts(db):
@@ -1096,7 +1084,7 @@ def plot_annotated_perl_baseline(db):
     conn.close()
 
 def paper_plots(db):
-    #plot_annotated_perl_baseline(db)
+    plot_annotated_perl_baseline(db)
 
     large_bmks, _ = get_large_benchmarks(db)
     all_bmks, _ = get_all_benchmarks(db)
@@ -1105,19 +1093,19 @@ def paper_plots(db):
     # Run with cache_sweep_8.db
     #plot_cache_size_sweep(db, horiz=False)
 
-    #plot_ideal_speedup(db, large_bmks, ["limit"], "baseline", "")
-    #plot_ideal_speedup(db, large_bmks, ["realistic"], "baseline", "")
-    #plot_ideal_speedup(db, all_bmks, ["realistic", "limit"], "baseline", "_all")
-    #plot_ideal_speedup(db, large_bmks, ["realistic", "limit"], "baseline", "_large")
+    plot_ideal_speedup(db, large_bmks, ["limit"], "baseline", "")
+    plot_ideal_speedup(db, large_bmks, ["realistic"], "baseline", "")
+    plot_ideal_speedup(db, all_bmks, ["realistic", "limit"], "baseline", "_all")
+    plot_ideal_speedup(db, large_bmks, ["realistic", "limit"], "baseline", "_large")
     plot_ideal_speedup(db, large_bmks, ["realistic"], "baseline", "_large", True)
 
     #plot_baseline_vs_opt_profiling(db, "all", "baseline")
 
     #plot_stacked_cycles(db)
     print "ideal"
-    #plot_overall_speedup(db, "limit")
+    plot_overall_speedup(db, "limit")
     print "real"
-    #plot_overall_speedup(db, "realistic")
+    plot_overall_speedup(db, "realistic")
 
 def main():
     parser = argparse.ArgumentParser()

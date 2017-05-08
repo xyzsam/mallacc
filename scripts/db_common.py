@@ -249,7 +249,6 @@ def get_large_benchmarks(db):
     """ Get the list of ubenchmarks from the DB. """
     query = ("select benchmark, id from benchmarks "
              "where benchmark not like \"ubench.%\" "
-             "and benchmark not like \"xapian.query_wiki_pages.%\" "
              "order by benchmark asc")
     conn = sqlite3.connect(db)
     cursor = conn.cursor()

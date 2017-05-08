@@ -158,8 +158,8 @@ def GetRuns(category):
         runs.append(xapianbench.GetRun("xapian.query_wiki_pages.9"))
         runs.append(xapianbench.GetRun("xapian.query_wiki_pages.10"))
     elif category == "masstree":
-        runs.append(masstree.GetRun("masstree.ycsb"))
-        # runs.append(masstree.GetRun("masstree.same"))
+        runs.append(masstree.GetRun("masstree.wcol1"))
+        runs.append(masstree.GetRun("masstree.same"))
     return runs
 
 def GetNextRunNumber(directory):
