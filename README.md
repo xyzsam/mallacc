@@ -21,10 +21,10 @@ experiments that can be run natively on your machine, you only need to clone
 want to reproduce simulation results of Mallacc speedup, you will need to
 install XIOSim.
 
-1. [gperftools](https://github.com/s-kanev/gperftools/tree/malloc_hw) - our
-   customized version of tcmalloc that uses our newly proposed instructions.
-   This includes a collection of microbenchmarks designed to stress various
-   parts of malloc.
+1. [gperftools](https://github.com/s-kanev/gperftools/) - our customized
+   version of tcmalloc that uses our newly proposed instructions.  This
+   includes a collection of microbenchmarks designed to stress various parts of
+   malloc.
 2. [tcmalloc-cloud-workloads](https://github.com/xyzsam/tcmalloc-cloud-workloads) -
    A collection of larger ''cloud'' workloads that we used to evaluate malloc
    speedup in more realistic scenarios. Includes Xapian and Masstree.
@@ -33,9 +33,9 @@ install XIOSim.
      A search database over wikipedia abstracts only.
    * [full-pages](https://storage.googleapis.com/mallacc/wiki_pages.tar.xz): A
      search database over full Wikipedia pages (text only).
-4. [XIOSim](https://github.com/s-kanev/XIOSim/tree/malloc_hw) - an x86
-   simulator. This branch includes support for malloc instructions and
-   specialized hardware.
+4. [XIOSim](https://github.com/s-kanev/XIOSim) - an x86 simulator. The
+   malloc_hw branch includes support for malloc instructions and specialized
+   hardware.
 
 # Installation #
 
@@ -58,7 +58,7 @@ These are important.
 ## gperftools ##
 
 Clone the gperftools repository linked above. Installation instructions are in
-[README.md](https://github.com/s-kanev/gperftools/tree/malloc_hw/README.md).
+[README.md](https://github.com/s-kanev/gperftools/README.md).
 
 ## Xapian ##
 
