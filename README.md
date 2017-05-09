@@ -26,7 +26,7 @@ install XIOSim.
    This includes a collection of microbenchmarks designed to stress various
    parts of malloc.
 2. [tcmalloc-cloud-workloads](https://github.com/xyzsam/tcmalloc-cloud-workloads) -
-   A collection of larger ``cloud'' workloads that we used to evaluate malloc
+   A collection of larger ''cloud'' workloads that we used to evaluate malloc
    speedup in more realistic scenarios. Includes Xapian and Masstree.
 3. Pre-built Xapian databases of Wikipedia articles.
    * [abstracts](https://storage.googleapis.com/mallacc/wiki_abstracts.tar.xz):
