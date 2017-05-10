@@ -113,3 +113,14 @@ some hard-coded path names to suit your system and environment.
 
 The simulations are somewhat computationally expensive -- the full runs in
 `run_profiles.py` took ~2 days on our 200-core compute cluster.
+
+## Analyzing results & plots ##
+
+Our workflow parses simulator output files for each benchmark run and puts
+the results in a SQLite database for analysis. Once simulations are finished,
+the following should reproduce most data plots in the Mallacc paper:
+```bash
+python parse_results.py read --results-dir /sim/output/dir --db speedup.db
+python parse_results.py analyze --db speedup.db
+python plot_profiling_data.py paper-plots --db speedup.db
+```
