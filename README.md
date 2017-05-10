@@ -58,7 +58,7 @@ These are important.
 ## gperftools ##
 
 Clone the gperftools repository linked above. Installation instructions are in
-[README.md](https://github.com/s-kanev/gperftools/README.md).
+[README.md](https://github.com/s-kanev/gperftools/tree/malloc_hw/README.md).
 
 ## Xapian ##
 
