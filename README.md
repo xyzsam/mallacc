@@ -5,7 +5,7 @@ This was a project to build an in-core hardware accelerator for malloc(). For
 more information, please refer to this paper:
 
 Svilen Kanev, Sam (Likun) Xi, Gu-Yeon Wei, and David Brooks.  
-Mallacc: Accelerator Memory Allocation.  
+Mallacc: Accelerating Memory Allocation.  
 Architectural Support for Operating Systems and Programming Languages, April 2017.
 [PDF](http://www.samxi.org/papers/kanev_asplos2017.pdf)
 
