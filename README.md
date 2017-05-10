@@ -72,13 +72,15 @@ RAM). We have written some basic client testbenches that run queries over these
 databases using the core library.
 
 For build and execution instructions, please see the
-[README](https://github.com/xyzsam/tcmalloc-cloud-workloads/xapian/README.md).
+[tcmalloc-cloud-workloads](https://github.com/xyzsam/tcmalloc-cloud-workloads)
+repo.
 
 ## Masstree ##
 
 Masstree is located in tcmalloc-cloud-workloads/masstree. Installation
 and execution instructions are in the
-[README](https://github.com/xyzsam/tcmalloc-cloud-workloads/masstree-beta/README.md).
+[tcmalloc-cloud-workloads](https://github.com/xyzsam/tcmalloc-cloud-workloads)
+repo.
 
 ## XIOSim ##
 
