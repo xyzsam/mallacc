@@ -82,6 +82,10 @@ and execution instructions are in the
 [tcmalloc-cloud-workloads](https://github.com/xyzsam/tcmalloc-cloud-workloads)
 repo.
 
+## SPEC CPU2006 ##
+
+See [SPEC.md](SPEC.md).
+
 ## XIOSim ##
 
 XIOSim is the x86 cycle-level simulator that we used to simulate Mallacc
@@ -106,3 +110,6 @@ arguments are passed to the simulator.
 To run a simulation, please look at
 [run_profiles.py](scripts/sim_runs/run_profiles.py).  You will need to replace
 some hard-coded path names to suit your system and environment.
+
+The simulations are sowewhat computationally expensive -- the full runs in
+`run_profiles.py` took ~2 days on our 200-core compute cluster.
