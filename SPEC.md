@@ -31,7 +31,7 @@ export MAXK=5
 export CUTOFF=".99"
 ```
 The single point length of 1B instructions is especially important -- it makes sure that each slice contains a large enough
-number of memory allocations/dealloactions. After this step, you will be left with `.pp` files for each benchmark/input.
+number of memory allocations/deallocations. After this step, you will be left with `.pp` files for each benchmark/input.
 
 Now, build another copy of SPEC in a new output location, this time linking with `libtcmalloc.a` with
 the Mallacc instructions. This should be the only difference in your SPEC config files:
@@ -50,9 +50,9 @@ For each `.pp` file, do the following:
 - Find the `markedInstructions` section in the `.pp` file.
 - For each instruction mark (start or end of a PinPoint):
     + look at the address for each instruction
-    + make sure the instructions in the native and sumilated binaries at that address match (and are also
+    + make sure the instructions in the native and simulated binaries at that address match (and are also
     in the same function, surrounded by similar code).
-    + for the few cases which don't match, find out the new address of that instrction in the simulated binary.
+    + for the few cases which don't match, find out the new address of that instruction in the simulated binary.
     This is usually easier than it sounds -- the only difference between the two binaries should come from allocator
     code and different linker section offsets -- so the instruction just lands at the same offset on a different page.
     Just search for the last three hex digits of the native instruction address in the simulated binary's disassembly,

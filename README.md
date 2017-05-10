@@ -111,5 +111,5 @@ To run a simulation, please look at
 [run_profiles.py](scripts/sim_runs/run_profiles.py).  You will need to replace
 some hard-coded path names to suit your system and environment.
 
-The simulations are sowewhat computationally expensive -- the full runs in
+The simulations are somewhat computationally expensive -- the full runs in
 `run_profiles.py` took ~2 days on our 200-core compute cluster.
