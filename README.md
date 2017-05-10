@@ -21,8 +21,8 @@ experiments that can be run natively on your machine, you only need to clone
 want to reproduce simulation results of Mallacc speedup, you will need to
 install XIOSim.
 
-0. A recent C++ toolchain with support for C++14 and ``--fsized_delete``. GCC 5+
-   should be OK -- for our experiments, we used GCC 6.1.
+0. A recent C++ toolchain with support for C++14 and `-fsized-deallocation`.
+   GCC 5+ should be OK -- for our experiments, we used GCC 6.1.
 1. [gperftools](https://github.com/s-kanev/gperftools/) - our customized
    version of tcmalloc that uses our newly proposed instructions.  This
    includes a collection of microbenchmarks designed to stress various parts of
